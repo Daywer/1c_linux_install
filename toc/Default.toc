@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map type="toc">
+<title>Table of Contents</title>
+<page href="../contents/First_Topic.htm" format="html" processing-role="normal"></page>
+<book navtitle="Debian 12" format="html" processing-role="normal">
+  <page href="../contents/Debian_12/new_topic.htm" format="html" processing-role="normal"></page>
+</book>
+</map>
