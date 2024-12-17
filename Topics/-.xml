@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" modified="2024-12-17T14:57:55.098+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title>Общие положения</title>
+  <body>
+    <header>
+      <para styleclass="Heading1">Общие положения</para>
+    </header>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text style="font-size:18pt; font-weight:bold;">Debian 12</text></para>
+    <list id="0" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:Symbol; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Скрипт для бэкапа находится по пути:</li>
+    </list>
+    <para styleclass="Normal">&#32;<tab />/home/&lt;username&gt;/.script/backup.sh</para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:Symbol; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Скрипт запускается демоном cron c учетной записью пользователя, раз в сутки в 00:00 часов<text style="font-weight:bold;">&#32;</text><tab /></li>
+    </list>
+    <para styleclass="Normal"><tab /># пример строки crontab</para>
+    <para styleclass="Normal"><tab />0 0 * * * &#160;/home/&lt;username&gt;/.script/backup.sh</para>
+    <para styleclass="Normal"></para>
+    <list id="1" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:Symbol; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Учетная запись пользователя базы данных</li>
+    </list>
+    <para styleclass="Normal"><tab />логин: postgres</para>
+    <para styleclass="Normal"><tab />пароль: postgres</para>
+    <para styleclass="Normal"></para>
+    <list id="2" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:Symbol; font-size:11pt; color:#000000;">
+      <li styleclass="Normal"> Файл конфигурации Web-Сервера в котором хранятся данные о публикации, базы данных 1С</li>
+    </list>
+    <para styleclass="Normal"> &#160; &#160;и сертификаты SSL</para>
+    <para styleclass="Normal"><tab />/etc/apache2/conf.d/&lt;имя_домена&gt;.conf</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">пример: /etc/apache2/conf.d/1с.mydomen.ru.conf</text></para>
+    <para styleclass="Normal"></para>
+    <list id="3" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:Symbol; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Имя службы 1С имеет вид &#160;srv1cv8-&lt;номер_версии&gt;.service :</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">пример: &#160;srv1cv8-8.3.25.1445.service</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text style="font-size:18pt; font-weight:bold;">CentOS 9</text></para>
+    <list id="0" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:Symbol; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Скрипт для бэкапа находится по пути:</li>
+    </list>
+    <para styleclass="Normal">&#32;<tab />/home/&lt;username&gt;/.script/backup.sh</para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:Symbol; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Скрипт запускается демоном cron c учетной записью пользователя, раз в сутки в 00:00 часов <tab /></li>
+    </list>
+    <para styleclass="Normal"><tab /># пример строки crontab</para>
+    <para styleclass="Normal"><tab />0 0 * * * &#160;/home/&lt;username&gt;/.script/backup.sh</para>
+    <para styleclass="Normal"></para>
+    <list id="1" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:Symbol; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Учетная запись пользователя базы данных</li>
+    </list>
+    <para styleclass="Normal"><tab />логин: postgres</para>
+    <para styleclass="Normal"><tab />пароль: postgres</para>
+    <para styleclass="Normal"></para>
+    <list id="2" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:Symbol; font-size:11pt; color:#000000;">
+      <li styleclass="Normal"> Файл конфигурации Web-Сервера в котором хранятся данные о публикации, базы данных 1С</li>
+    </list>
+    <para styleclass="Normal"> &#160; &#160;и сертификаты SSL</para>
+    <para styleclass="Normal"><tab />/etc/httpd/conf.d/&lt;имя_домена&gt;.conf</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">пример: /etc/httpd/conf.d/1с.mydomen.ru.conf</text></para>
+    <para styleclass="Normal"></para>
+    <list id="3" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:Symbol; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Имя службы 1С имеет вид &#160;srv1cv8-&lt;номер_версии&gt;.service :</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">пример: &#160;srv1cv8-8.3.25.1445.service</text></para>
+  </body>
+</topic>

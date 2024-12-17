@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map xmlns:xsi="http://www.w3.org/2001/XInclude">
+  <topicref type="topic" id="456437121408720" build="ALL" modified="2024-12-17T14:27:01.078Z" icon="0" href="-">
+    <caption translate="true">Общие положения</caption>
+  </topicref>
+  <topicref type="topic" id="456437145994538" build="ALL" modified="2024-12-17T14:27:01.365Z" icon="0" href="Debian-12">
+    <caption translate="true">Debian 12</caption>
+    <topicref type="topic" id="456436810039441" build="ALL" modified="2024-12-17T14:27:01.514Z" icon="0" href="Topic">
+      <caption translate="true">Установка</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="456437674343042" build="ALL" modified="2024-12-17T14:27:01.688Z" icon="0" href="Centos-9">
+    <caption translate="true">Centos 9</caption>
+    <topicref type="topic" id="456437823247152" build="ALL" modified="2024-12-17T14:27:01.821Z" icon="0" href="Topic2">
+      <caption translate="true">Установка</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="45645669175651" build="ALL" modified="2024-12-17T14:59:11.555Z" icon="0" href="Topic3">
+    <caption translate="true">ЗаголовокТемы</caption>
+  </topicref>
+</map>
