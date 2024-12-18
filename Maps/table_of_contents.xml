@@ -42,10 +42,16 @@
   <topicref type="topic" id="456444993811066" build="ALL" modified="2024-12-18T10:58:21.201Z" icon="0" href="Backup">
     <caption translate="true">7. Бэкапы</caption>
   </topicref>
-  <topicref type="topic" id="456445204385192" build="ALL" modified="2024-12-18T12:00:18.344Z" icon="0" href="YandexDisk">
-    <caption translate="true">8. Синхронизация с Yandex Disk</caption>
-  </topicref>
-  <topicref type="topic" id="456443453478725" build="ALL" modified="2024-12-18T12:27:07.797Z" icon="1" href="Security">
+  <topicref type="topic" id="456446334102178" build="ALL" modified="2024-12-18T12:50:45.375Z" icon="0" href="Sequrity">
     <caption translate="true">Безопасность</caption>
+    <topicref type="topic" id="456445204385192" build="ALL" modified="2024-12-18T12:52:56.910Z" icon="0" href="YandexDisk">
+      <caption translate="true">SSH</caption>
+    </topicref>
+    <topicref type="topic" id="456446421301554" build="ALL" modified="2024-12-18T12:56:50.562Z" icon="0" href="Debian.Firewall">
+      <caption translate="true">Debian Firewall настройка</caption>
+    </topicref>
+    <topicref type="topic" id="45643710515879" build="ALL" modified="2024-12-18T12:57:11.923Z" icon="0" href="CentOs.Firewall">
+      <caption translate="true">Centos Firewall настройка</caption>
+    </topicref>
   </topicref>
 </map>
