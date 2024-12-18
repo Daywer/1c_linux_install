@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" modified="2024-12-18T10:23:02.062+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title>1. Настройка DNS</title>
+  <body>
+    <header>
+      <para styleclass="Heading1">1. Настройка DNS</para>
+    </header>
+    <para styleclass="Normal">Нужно добавить ресурсную запись A на DNS сервере разрешающую имя вашего домена в адрес.</para>
+    <para styleclass="Normal">В завиcимости от того, у какого регистратора находится DNS сервер, обновление ресурсных записей может занять</para>
+    <para styleclass="Normal">от 15 минут до суток.</para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal">Проверить можно утилитой dig или nslookup:</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">dig 1c.mydomen.ru</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal">В одной из строк ответа должна быть запись вида:</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">1c.mydomen.ru. &#160; &#160; &#160; &#160;600 &#160; &#160; IN &#160; &#160; &#160;A &#160; &#160; &#160; 212.120.160.130</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><line style="height:1px; color:#000000;" /></para>
+    <para styleclass="Normal">Или воспользоваться сервисом Google ToolBox.</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">https://toolbox.googleapps.com/apps/dig/#A/</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal">&#32;</para>
+  </body>
+</topic>

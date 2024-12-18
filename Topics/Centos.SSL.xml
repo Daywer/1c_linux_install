@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" modified="2024-12-18T13:43:07.553+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title>4. Установка SSL</title>
+  <body>
+    <header>
+      <para styleclass="Heading1">4. Установка SSL</para>
+    </header>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Получаем SSL сертификат </li>
+    </list>
+    <para styleclass="Normal"><tab />certbot certonly --dry-run --agree-tos --email &lt;почта&gt; -d &lt;имя_домена&gt; --webroot -w &lt;web каталог&gt;</para>
+    <para styleclass="Normal"> &#160; &#160; &#160; &#160; &#160; &#160;пример (сначала с опцией --dry-run что бы при нескольких неудачных попытках &#160;не попасть в немилость к Letsencrypt): </para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">certbot certonly --dry-run --agree-tos --email admin@1c.mydomen.ru -d 1c.mydomen.ru --webroot -w /var/www/html</text></para>
+    <para styleclass="Normal"> &#160; &#160; &#160; &#160; &#160; &#160;Если все удачно, то тоже самое, но без --dry-run:</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">certbot certonly --agree-tos --email admin@1c.mydomen.ru -d 1c.mydomen.ru --webroot -w /var/www/html</text></para>
+    <para styleclass="Normal"><tab />При удачном исходе загрузить сертифкаты и выдаст ссылки на сертфикаты в системе</para>
+    <para styleclass="Normal"><tab />пример:</para>
+    <para styleclass="Normal"><tab /><tab /><text style="color:#0000ff;">/etc/letsencrypt/live/1c.mydomen.ru/fullchain.pem</text></para>
+    <para styleclass="Normal"><tab /><tab /><text style="color:#0000ff;">/etc/letsencrypt/live/1c.mydomen.ru/privkey.pem</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Теперь создадим службу которая будет отвечать за обновление сертификата</li>
+    </list>
+    <para styleclass="Normal"> &#160; &#160; Создаем файл /etc/systemd/system/certbot-renewal.service , со следующим содержимым:</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">[Unit]</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">Description=Certbot Renewal</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">[Service]</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">ExecStart=/usr/bin/certbot renew --force-renewal --post-hook &quot;systemctl reload httpd.service&quot;</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Далее создаем таймер который будет эту службу периодически &#160;запускать </li>
+    </list>
+    <para styleclass="Normal"> &#160; &#160; Создаем файл /etc/systemd/system/certbot-renewal.timer , со следующим содержимым:</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">[Unit]</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">Description=Timer for Certbot Renewal</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">[Timer]</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">OnBootSec=300</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">OnUnitActiveSec=1w</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">[Install]</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">WantedBy=multi-user.target</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Запускаем таймер и добавляем в автозапуск</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">systemctl start certbot-renewal.timer</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">systemctl enable certbot-renewal.timer</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Добавляем сертификаты в конфигурационных файл Web-Сервера</li>
+    </list>
+    <para styleclass="Normal"><tab />Открываем файл /etc/httpd/conf.d/1c.mydomen.ru.conf и добавляем следующее:</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">&lt;VirtualHost *:443&gt;</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">SSLEngine on</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">SSLCertificateFile /etc/letsencrypt/live/1c.mydomen.ru/fullchain.pem</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">SSLCertificateKeyFile /etc/letsencrypt/live/1c.mydomen.ru/privkey.pem</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">SSLCertificateChainFile /etc/letsencrypt/live/1c.mydomen.ru/chain.pem</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">&lt;/VirtualHost&gt;</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Перезапускаем Web-Сервер</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">systemctl restart httpd.service</text></para>
+  </body>
+</topic>

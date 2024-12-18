@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" modified="2024-12-18T12:13:38.510+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title>7. Бэкапы</title>
+  <body>
+    <header>
+      <para styleclass="Heading1">7. Бэкапы</para>
+    </header>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Переключимся на обычного пользователя (допустим user) и создадим сценарий снятия дампов с базы данных</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">mkdir ~/.script</text></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal"><tab />Создадим файл ~/.script/backup.sh сос ледующим содержимым:</li>
+    </list>
+    <para styleclass="Normal"><tab /></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">#!/bin/bash</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">#-----------------------------------------------------------------#</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;"># Каталог дампов указать свой</text></para>
+    <para styleclass="Normal"><anchor id="BackupCatalog"></anchor><tab /><text style="color:#0000ff;">catalog=/mnt/data/dumps</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;"># Сколько дней хранить Бэкапы</text></para>
+    <para styleclass="Normal"><text style="color:#0000ff;"> &#160; &#160; &#160; &#160; &#160; &#160;days=14</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;"># Сколько дней хранить Бэкапы за первое число </text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;"># Если две копии то 60, три - 90 и год -365</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">mdays=365</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">#----------------------------------------------------------------#</text></para>
+    <para styleclass="Normal"><text style="color:#0000ff;"> &#160; &#160;</text><tab /><text style="color:#0000ff;">dt=$(date &apos;+%Y-%m-%d_%H%M&apos;)</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">cd $catalog</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">pg_dump -Fc -v --dbname=postgresql://postgres:postgres@localhost:5432/ &gt; $catalog/database_$dt.sql</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">#Удаляем файлы старше $days</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">#Исключая файлы за первое число месяца</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">for line in *</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">do</text></para>
+    <para styleclass="Normal"><tab /><tab /><text style="color:#0000ff;"> &#160;dt=$(ls -l --full-time $line | awk &apos;{print $6}&apos;)</text></para>
+    <para styleclass="Normal"><tab /><tab /><text style="color:#0000ff;"> &#160;#echo $line</text></para>
+    <para styleclass="Normal"><tab /><tab /><text style="color:#0000ff;"> &#160;if [ $(echo $dt | cut -b 9-10) -eq &quot;01&quot; &#160;]</text></para>
+    <para styleclass="Normal"><tab /><tab /><tab /><text style="color:#0000ff;"> then</text></para>
+    <para styleclass="Normal"><tab /><tab /><tab /><text style="color:#0000ff;"> &#160;echo $(echo $dt | cut -b 9-10)</text></para>
+    <para styleclass="Normal"><tab /><tab /><tab /><text style="color:#0000ff;"> &#160;echo &quot;skipped:&quot; $line</text></para>
+    <para styleclass="Normal"><tab /><tab /><tab /><text style="color:#0000ff;"> &#160;continue</text></para>
+    <para styleclass="Normal"><tab /><tab /><text style="color:#0000ff;"> fi</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">&#32;</text><tab /><text style="color:#0000ff;">find . -type f -name $line -mtime +$days -delete</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">done</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;"># Файлы за первое число месяца будут копиться</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;"># старше $mdays &#160;все равно удаляем</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">find . -type f -mtime +$mdays -delete</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">cd ~/</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Создадим автоматическое выполнение скрипта</li>
+    </list>
+    <para styleclass="Normal">&#32;<tab /><text style="color:#0000ff;">crontab -e</text></para>
+    <para styleclass="Normal"><tab />Добавляем строку, указав свой путь к скрипту.</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">0 0 * * * /home/user/.script/backup.sh</text><tab /></para>
+    <para styleclass="Normal">Выходим из реадактора. При удачно выполнении выдаст сообщение:</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">crontab: installing new crontab</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal">Теперь каждые сутки в 00 часов 00 минут будет запускаться скрипт <text style="color:#0000ff;">/home/user/.script/backup.sh</text></para>
+    <para styleclass="Normal"></para>
+  </body>
+</topic>

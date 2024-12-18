@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" modified="2024-12-18T13:27:36.084+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title>SSH</title>
+  <body>
+    <header>
+      <para styleclass="Heading1">Debian. Настройка Firewall</para>
+    </header>
+    <para styleclass="Normal">Данная настройка выполняется от пользователя root</para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Устанавливает утилиты для работы c пакетным фильтром</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">sudo apt -y install iptables iptables-persistent</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Добавляем правило для установленных соединений</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">sudo iptables -I INPUT -m state --state &quot;ESTABLISHED,RELATED&quot; -j ACCEPT</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Добавляем разрешающее самому хосту любые подключения </li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">sudo iptables -I 2 INPUT -p tcp -s localhost &#160;-j ACCEPT</text>&#32;</para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Добавляем правило для доступа к Web Серверу для любых адресов источников</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">sudo iptables -A INPUT -p tcp -m multiport --dports 80,443 &#160;-j ACCEPT</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Добавляем правило для доступа к серверу SSH для тех кому доверяем</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">sudo iptables -A INPUT -p tcp -s daywer.ru,178.49.189.72,109.174.0.168 --dport 22 &#160;-j ACCEPT</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#ff0000;">ВНИМАНИЕ! У вас может быть собственный список доверенных адресов</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Добавляем правило для доступа к серверу 1С для тех кому доверяем</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">sudo iptables -A INPUT -p tcp -s daywer.ru,178.49.189.72,109.174.0.168 &#160;-m multiport --dports 1540,1541,1560:1591 &#160;-j ACCEPT</text></para>
+    <para styleclass="Normal"><tab />где -s daywer.ru,178.49.189.72,109.174.0.168 список адресов источников</para>
+    <para styleclass="Normal"><tab /><text style="color:#ff0000;">ВНИМАНИЕ! У вас может быть собственный список доверенных адресов</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Последним правилом добавляем отброс остальных пакетов</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">sudo iptables -A INPUT -j DROP</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Теперь сохраняем все правила</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">sudo iptables-save &gt; /etc/iptables/rules.v4</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"></para>
+  </body>
+</topic>

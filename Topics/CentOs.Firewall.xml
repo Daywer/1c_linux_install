@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" modified="2024-12-18T15:10:40.157+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title>SSH</title>
+  <body>
+    <header>
+      <para styleclass="Heading1">CentOS. Настройка Firewall</para>
+    </header>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Запускаем Firewalld</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">systemctl start firewalld</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">systemctl enable firewalld</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Разрешаем доступ к Web Серверу</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">firewall-cmd --zone=public --add-service=http --add-service=https --permanent</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Создаем сервис для 1С, зону доверенных адресов и добавляем сервис в доверенную зону</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">firewall-cmd --new-service=srv1c --set-description=&quot;1C Server&quot; --add-port=1540-1541/tcp &#160; --add-port=1560-1591/tcp </text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">firewall-cmd --new-zone=special</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">firewall-cmd --zone=special --add-source=178.49.189.72\</text></para>
+    <para styleclass="Normal"><tab /><tab /><tab /><tab /><tab /><tab /><tab /><text style="color:#0000ff;">--add-source=195.208.156.231\</text></para>
+    <para styleclass="Normal"><tab /><tab /><tab /><tab /><tab /><tab /><tab /><text style="color:#0000ff;">--add-source=185.173.93.137\</text></para>
+    <para styleclass="Normal"><tab /><tab /><tab /><tab /><tab /><tab /><tab /><text style="color:#0000ff;">--add-source=109.248.222.105\</text></para>
+    <para styleclass="Normal"><tab /><tab /><tab /><tab /><tab /><tab /><tab /><text style="color:#0000ff;">--add-source=188.17.149.87\</text></para>
+    <para styleclass="Normal"><tab /><tab /><tab /><tab /><tab /><tab /><tab /><text style="color:#0000ff;">--add-source=178.49.189.72\</text></para>
+    <para styleclass="Normal"><tab /><tab /><tab /><tab /><tab /><tab /><tab /><text style="color:#0000ff;">--add-source=109.174.0.168</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">firewall-cmd --zone=special --add-service=srv1c</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">firewall-cmd --runtime-to-permanent</text></para>
+    <para styleclass="Normal"><text style="color:#ff0000;">ВНИМАНИЕ! Адреса для доверенной зоны у вас могут быть свои.</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Добавляем ssh в доверенную зону и удалем из публичной</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">firewall-cmd --zone=special --add-service=ssh</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">firewall-cmd --zone=public --remove-service=ssh</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">firewall-cmd --runtime-to-permanent</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Перегружаем правила</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">firewall-cmd --reload</text></para>
+  </body>
+</topic>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" modified="2024-12-18T11:11:45.914+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title>3. Установка ПО</title>
+  <body>
+    <header>
+      <para styleclass="Heading1">3. Установка ПО</para>
+    </header>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Добавляем пакетны репозиторий.</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">dnf -y install epel-release</text></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Устанавливаем необходимое ПО.</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">dnf -y install vim httpd unzip bzip2 lbzip2 certbot nmap htop</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Скачиваем и устанавливаем Postgresql.</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">wget https://1c.grossarea.ru/distr/postgresql_16.4_5.1C_x86_64_rpm.tar.bz2</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">tar -xf</text>&#32;<text style="color:#0000ff;">postgresql_16.4_5.1C_x86_64_rpm.tar.bz2</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">cd postgresql-16.4-5.1C_x86_64_rpm &#160;</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">dnf -y install postgresql16-1c-*</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">/usr/bin/postgresql-16-setup initdb</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">systemctl start postgresql-16.service</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">systemctl enable postgresql-16.service</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Устанавиваем &#160;пароль системной учетной записи postgres (пароль: postgres).</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">passwd postgres</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Устанавливаем пароль пользователю postgres в СУБД.</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">su postgres</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">psql</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">ALTER ROLE postgres WITH PASSWORD &apos;postgres&apos;;</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">\q</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">exit</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal"> Скачиваем и устанавливаем 1С &#160;Сервер.</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">wget https://1c.grossarea.ru/distr/rpm64_8_3_25_1445.zip</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">unzip rpm64_8_3_25_1445.zip</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">dnf -y install 1c-enterprise-8.3.25.1445-*</text></para>
+    <para styleclass="Normal"><tab /></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Создаем службу 1С сервера.</li>
+    </list>
+    <para styleclass="Normal"><tab />В &#160;/opt/1cv8/x86_64/8.3.25.1445/srv1cv8-8.3.25.1445@.service - есть пример сервиса, его и следует использовать </para>
+    <para styleclass="Normal"><tab />Копируем изменяя имя файла сервиса (Убираем символ @)<tab /></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">cp /opt/1cv8/x86_64/8.3.25.1445/srv1cv8-8.3.25.1445@.service /etc/systemd/system/srv1cv8-8.3.25.1445.service</text></para>
+    <para styleclass="Normal"><tab /></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Потом запускаем и включаем в автозапуск</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">systemctl start srv1cv8-8.3.25.1445.service</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">systemctl enable srv1cv8-8.3.25.1445.service</text></para>
+    <para styleclass="Normal"></para>
+  </body>
+</topic>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" modified="2024-12-18T10:22:46.886+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title>2. Установка и подготовка</title>
+  <body>
+    <header>
+      <para styleclass="Heading1">2. Установка и подготовка</para>
+    </header>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Устанавливаем &#160;Centos 9.<tab /></li>
+    </list>
+    <para styleclass="Normal"><tab />- &#160;Выбираем авторазметку, не разделяя диск на разделы. Пусть весь физический диск (исключая SWAP раздел) отдан под корневую файловую систему.</para>
+    <para styleclass="Normal"><tab />- Создаем пользователя без root прав.</para>
+    <para styleclass="Normal"><tab />- В качестве набора приложений выбираем &quot;Server&quot; (графическое окружение не нужно). </para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">После загрузки входим с учетной записью root.</li>
+      <li styleclass="Normal">Добавляем учетную запись обычного пользователя в файл /etc/sudoers дописывая такую строку:</li>
+    </list>
+    <para styleclass="Normal"><tab />&lt;username&gt; &#160;ALL=(ALL:ALL) ALL</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">пример: user &#160; ALL=(ALL:ALL) ALL</text></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Правим файл /etc/hostname . Оставляем там единственную надпись с именем домена.</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">пример: 1c.mydomen.ru</text></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Правим файл /etc/hosts. Добавляем строчку:</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">127.0.0.1 1c.myserver.ru</text></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Перегружаем сервер.</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">reboot</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><tab />&#32;</para>
+  </body>
+</topic>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" modified="2024-12-18T15:08:34.289+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title>SSH</title>
+  <body>
+    <header>
+      <para styleclass="Heading1">SSH</para>
+    </header>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Для защиты SSH сгенерируем сертификат</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">ssh-keygen -f id_rsa</text></para>
+    <para styleclass="Normal"><tab />На запрос &quot;Enter passphrase&quot;, нужно ввести пароль которым защищен ключ SSH</para>
+    <para styleclass="Normal"> &#160; &#160; &#160; &#160; &#160; &#160;В текущем каталоге появятся два файла <text style="color:#0000ff;">id_rsa</text> и <text style="color:#0000ff;">id_rsa.pub</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">id_rsa.pub переименовываем в authorized_keys:</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">mv id_rsa.pub authorized_keys</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">authorized_keys</text> нужно положить на сервер в каталог <text style="color:#0000ff;">~/.ssh/</text></para>
+    <para styleclass="Normal">&#32;</para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal"><text style="color:#0000ff;">id_rsa</text> кладем на стороне клиента к каталог пользователя <text style="color:#0000ff;">~/.ssh/</text></li>
+    </list>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Поключаемся к серверу со стороны клиента</li>
+    </list>
+    <para styleclass="Normal"><tab />ssh &lt;имя пользователя&gt;@&lt;адрес сервера&gt; -i &#160;&lt;путь к файлу id_rsa&gt;</para>
+    <para styleclass="Normal"><tab />пример: </para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">ssh user</text><link displaytype="text" defaultstyle="true" type="weblink" href="mailto:&lt;%LINK_CAPTION%&gt;" style="color:#0000ff;">@1c.mydomen.ru</link><text style="color:#0000ff;"> -i ~/.ssh/id_rsa</text></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Теперь поправим /etc/ssh/sshd_config, чтобы чтобы запретить доступ по паролю,</li>
+    </list>
+    <para styleclass="Normal"> &#160; &#160; Оставим доступ только по сертификату. </para>
+    <para styleclass="Normal"> &#160; &#160; Отыщем и приведем параметры к нужному виду</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">PubkeyAuthetication yes &#160; # Разрешает аутентификацию по ключу (по умолчанию yes)</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">PasswordAuthentication no # Запрещает аутентификацию по паролю (только сертификат)</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">AllowUsers daywer &#160; &#160; &#160; &#160; # Разрешает подключение пользователю daywer</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">DenyUsers mysql postgres &#160;# Запрещает ssh login для пользователей mysql, postgres</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">PermitRootLogin no &#160; &#160; &#160; &#160;# Запрещает для root SSH</text></para>
+    <para styleclass="Normal"></para>
+    <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
+      <li styleclass="Normal">Перезапустим ssh сервер</li>
+    </list>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">systemctl restart sshd</text></para>
+  </body>
+</topic>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" modified="2024-12-18T12:21:24.158+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title>6. Настройка Сервера Postgresql</title>
+  <body>
+    <header>
+      <para styleclass="Heading1">6. Настройка Сервера Postgresql</para>
+    </header>
+    <para styleclass="Normal">Собственно штатных настроек достаточно и настраивать необходимости нет.</para>
+    <para styleclass="Normal">Но у компании 1С есть некоторые рекомендации по настройке сервера баз данных.</para>
+    <para styleclass="Normal">Файл конфигурации сервера находится:</para>
+    <para styleclass="Normal">Для CentOS 9:</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">/var/lib/pgsql/16/data/postgresql.conf</text></para>
+    <para styleclass="Normal">Для Debian 12:</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">/var/lib/pgpro/1c-16/data/postgresql.conf</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal">Классический случай рекомендаций 1С</para>
+    <para styleclass="Normal"><tab />listen_addresses = &apos;*&apos;</para>
+    <para styleclass="Normal"><tab />shared_buffers = 5GB # 25% of RAM</para>
+    <para styleclass="Normal"><tab />temp_buffers = 128MB</para>
+    <para styleclass="Normal"><tab />max_files_per_process = 10000</para>
+    <para styleclass="Normal"><tab />max_parallel_workers_per_gather = 0</para>
+    <para styleclass="Normal"><tab />max_parallel_maintenance_workers = 4 # Количество CPU/4, минимум 2, максимум 6</para>
+    <para styleclass="Normal"><tab />commit_delay = 1000</para>
+    <para styleclass="Normal"><tab />max_wal_size = 4GB</para>
+    <para styleclass="Normal"><tab />min_wal_size = 2GB</para>
+    <para styleclass="Normal"><tab />checkpoint_timeout = 15min</para>
+    <para styleclass="Normal"><tab />effective_cache_size = 12GB # 75% of RAM</para>
+    <para styleclass="Normal"><tab />work_mem=512MB</para>
+    <para styleclass="Normal"><tab />maintenance_work_mem = 1024MB</para>
+    <para styleclass="Normal"><tab />from_collapse_limit = 8</para>
+    <para styleclass="Normal"><tab />join_collapse_limit = 8</para>
+    <para styleclass="Normal"><tab />autovacuum_max_workers = 3 # Количество CPU/2, минимум 2</para>
+    <para styleclass="Normal"><tab />vacuum_cost_limit = 800 # 100* autovacuum_max_workers</para>
+    <para styleclass="Normal"><tab />autovacuum_naptime = 20s</para>
+    <para styleclass="Normal"><tab />autovacuum_vacuum_scale_factor = 0.01</para>
+    <para styleclass="Normal"><tab />autovacuum_analyze_scale_factor = 0.005</para>
+    <para styleclass="Normal"><tab />max_locks_per_transaction = 256</para>
+    <para styleclass="Normal"><tab />escape_string_warning = off</para>
+    <para styleclass="Normal"><tab />standard_conforming_strings = off</para>
+    <para styleclass="Normal"><tab />shared_preload_libraries = &apos;online_analyze, plantuner&apos;</para>
+    <para styleclass="Normal"><tab />online_analyze.threshold = 50</para>
+    <para styleclass="Normal"><tab />online_analyze.scale_factor = 0.1</para>
+    <para styleclass="Normal"><tab />online_analyze.enable = on</para>
+    <para styleclass="Normal"><tab />online_analyze.verbose = off</para>
+    <para styleclass="Normal"><tab />online_analyze.min_interval = 10000</para>
+    <para styleclass="Normal"><tab />online_analyze.table_type = &apos;temporary&apos;</para>
+    <para styleclass="Normal"><tab />plantuner.fix_empty_table = on</para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal">Обратите внимание что некоторые параметры опираются на объем памяти сервера и на число процессоров.</para>
+    <para styleclass="Normal">Так что их следует откорректировать согласно текущему железу.</para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal">После настроек службу сервера Postgres перезапускаем.</para>
+    <para styleclass="Normal">для Debian 12:</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">systemctl restart postgrespro-1c-16.service</text></para>
+    <para styleclass="Normal">CentOS 9:</para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">systemctl restart postgresql-16.service</text></para>
+  </body>
+</topic>
