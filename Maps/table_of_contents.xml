@@ -3,19 +3,49 @@
   <topicref type="topic" id="456437121408720" build="ALL" modified="2024-12-17T14:27:01.078Z" icon="0" href="-">
     <caption translate="true">Общие положения</caption>
   </topicref>
-  <topicref type="topic" id="456437145994538" build="ALL" modified="2024-12-17T14:27:01.365Z" icon="0" href="Debian-12">
-    <caption translate="true">Debian 12</caption>
-    <topicref type="topic" id="456436810039441" build="ALL" modified="2024-12-17T14:27:01.514Z" icon="0" href="Topic">
-      <caption translate="true">Установка</caption>
-    </topicref>
+  <topicref type="topic" id="456434497170741" build="ALL" modified="2024-12-18T12:32:02.831Z" icon="0" href="DNS">
+    <caption translate="true">1. Настройка DNS</caption>
   </topicref>
   <topicref type="topic" id="456437674343042" build="ALL" modified="2024-12-17T14:27:01.688Z" icon="0" href="Centos-9">
     <caption translate="true">Centos 9</caption>
-    <topicref type="topic" id="456437823247152" build="ALL" modified="2024-12-17T14:27:01.821Z" icon="0" href="Topic2">
-      <caption translate="true">Установка</caption>
+    <topicref type="topic" id="456437823247152" build="ALL" modified="2024-12-18T12:32:47.071Z" icon="0" href="Centos.Install">
+      <caption translate="true">2. Установка и подготовка</caption>
+    </topicref>
+    <topicref type="topic" id="456443996552789" build="ALL" modified="2024-12-18T08:52:09.542Z" icon="0" href="Centos.PO">
+      <caption translate="true">3. Установка ПО</caption>
+    </topicref>
+    <topicref type="topic" id="456445511904609" build="ALL" modified="2024-12-18T09:13:22.180Z" icon="0" href="Centos.SSL">
+      <caption translate="true">4. Установка SSL сертфикатов</caption>
+    </topicref>
+    <topicref type="topic" id="456445223168823" build="ALL" modified="2024-12-18T10:51:13.784Z" icon="0" href="Centos.1C.PUB">
+      <caption translate="true">5. Публикация 1С базы</caption>
     </topicref>
   </topicref>
-  <topicref type="topic" id="45645669175651" build="ALL" modified="2024-12-17T14:59:11.555Z" icon="0" href="Topic3">
-    <caption translate="true">ЗаголовокТемы</caption>
+  <topicref type="topic" id="456437145994538" build="ALL" modified="2024-12-17T14:27:01.365Z" icon="0" href="Debian-12">
+    <caption translate="true">Debian 12</caption>
+    <topicref type="topic" id="456436810039441" build="ALL" modified="2024-12-18T09:08:47.968Z" icon="0" href="Debian.Install">
+      <caption translate="true">2. Установка и подготовка</caption>
+    </topicref>
+    <topicref type="topic" id="456438459313006" build="ALL" modified="2024-12-18T12:34:00.878Z" icon="0" href="Debian.PO">
+      <caption translate="true">3. Установка ПО</caption>
+    </topicref>
+    <topicref type="topic" id="456444188287033" build="ALL" modified="2024-12-18T10:17:05.598Z" icon="0" href="Debian.SSL">
+      <caption translate="true">4. Установка SSL сертфикатов</caption>
+    </topicref>
+    <topicref type="topic" id="456445693994216" build="ALL" modified="2024-12-18T10:55:45.277Z" icon="0" href="Debian.1C.PUB">
+      <caption translate="true">5. Публикация 1С базы</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="456444585119745" build="ALL" modified="2024-12-18T11:01:05.310Z" icon="0" href="PostgresTuning">
+    <caption translate="true">6. Настройка Сервера Postgres</caption>
+  </topicref>
+  <topicref type="topic" id="456444993811066" build="ALL" modified="2024-12-18T10:58:21.201Z" icon="0" href="Backup">
+    <caption translate="true">7. Бэкапы</caption>
+  </topicref>
+  <topicref type="topic" id="456445204385192" build="ALL" modified="2024-12-18T12:00:18.344Z" icon="0" href="YandexDisk">
+    <caption translate="true">8. Синхронизация с Yandex Disk</caption>
+  </topicref>
+  <topicref type="topic" id="456443453478725" build="ALL" modified="2024-12-18T12:27:07.797Z" icon="1" href="Security">
+    <caption translate="true">Безопасность</caption>
   </topicref>
 </map>
