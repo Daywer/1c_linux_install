@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
-<topic template="Default" modified="2024-12-18T13:43:07.553+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+<topic template="Default" modified="2024-12-23T09:01:32.432+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
   <title>4. Установка SSL</title>
   <body>
     <header>
@@ -14,7 +14,7 @@
     <para styleclass="Normal"><tab /><text style="color:#0000ff;">certbot certonly --dry-run --agree-tos --email admin@1c.mydomen.ru -d 1c.mydomen.ru --webroot -w /var/www/html</text></para>
     <para styleclass="Normal"> &#160; &#160; &#160; &#160; &#160; &#160;Если все удачно, то тоже самое, но без --dry-run:</para>
     <para styleclass="Normal"><tab /><text style="color:#0000ff;">certbot certonly --agree-tos --email admin@1c.mydomen.ru -d 1c.mydomen.ru --webroot -w /var/www/html</text></para>
-    <para styleclass="Normal"><tab />При удачном исходе загрузить сертифкаты и выдаст ссылки на сертфикаты в системе</para>
+    <para styleclass="Normal"><tab />При удачном исходе будут загружены сертификаты и выдаст ссылки на сертификаты в системе</para>
     <para styleclass="Normal"><tab />пример:</para>
     <para styleclass="Normal"><tab /><tab /><text style="color:#0000ff;">/etc/letsencrypt/live/1c.mydomen.ru/fullchain.pem</text></para>
     <para styleclass="Normal"><tab /><tab /><text style="color:#0000ff;">/etc/letsencrypt/live/1c.mydomen.ru/privkey.pem</text></para>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
-<topic template="Default" modified="2024-12-18T12:13:38.510+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+<topic template="Default" modified="2024-12-23T08:57:23.017+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
   <title>7. Бэкапы</title>
   <body>
     <header>
@@ -11,7 +11,7 @@
     </list>
     <para styleclass="Normal"><tab /><text style="color:#0000ff;">mkdir ~/.script</text></para>
     <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
-      <li styleclass="Normal"><tab />Создадим файл ~/.script/backup.sh сос ледующим содержимым:</li>
+      <li styleclass="Normal"><tab />Создадим файл ~/.script/backup.sh со следующим содержимым:</li>
     </list>
     <para styleclass="Normal"><tab /></para>
     <para styleclass="Normal"><tab /><text style="color:#0000ff;">#!/bin/bash</text></para>
@@ -21,7 +21,7 @@
     <para styleclass="Normal"><tab /><text style="color:#0000ff;"># Сколько дней хранить Бэкапы</text></para>
     <para styleclass="Normal"><text style="color:#0000ff;"> &#160; &#160; &#160; &#160; &#160; &#160;days=14</text></para>
     <para styleclass="Normal"><tab /><text style="color:#0000ff;"># Сколько дней хранить Бэкапы за первое число </text></para>
-    <para styleclass="Normal"><tab /><text style="color:#0000ff;"># Если две копии то 60, три - 90 и год -365</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;"># Если две копии то 60, три - 90, год -365</text></para>
     <para styleclass="Normal"><tab /><text style="color:#0000ff;">mdays=365</text></para>
     <para styleclass="Normal"><tab /><text style="color:#0000ff;">#----------------------------------------------------------------#</text></para>
     <para styleclass="Normal"><text style="color:#0000ff;"> &#160; &#160;</text><tab /><text style="color:#0000ff;">dt=$(date &apos;+%Y-%m-%d_%H%M&apos;)</text></para>

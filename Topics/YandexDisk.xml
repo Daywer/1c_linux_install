@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
-<topic template="Default" modified="2024-12-18T15:08:34.289+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+<topic template="Default" modified="2024-12-23T08:55:37.553+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
   <title>SSH</title>
   <body>
     <header>
@@ -34,11 +34,13 @@
     </list>
     <para styleclass="Normal"> &#160; &#160; Оставим доступ только по сертификату. </para>
     <para styleclass="Normal"> &#160; &#160; Отыщем и приведем параметры к нужному виду</para>
-    <para styleclass="Normal"><tab /><text style="color:#0000ff;">PubkeyAuthetication yes &#160; # Разрешает аутентификацию по ключу (по умолчанию yes)</text></para>
-    <para styleclass="Normal"><tab /><text style="color:#0000ff;">PasswordAuthentication no # Запрещает аутентификацию по паролю (только сертификат)</text></para>
-    <para styleclass="Normal"><tab /><text style="color:#0000ff;">AllowUsers daywer &#160; &#160; &#160; &#160; # Разрешает подключение пользователю daywer</text></para>
-    <para styleclass="Normal"><tab /><text style="color:#0000ff;">DenyUsers mysql postgres &#160;# Запрещает ssh login для пользователей mysql, postgres</text></para>
-    <para styleclass="Normal"><tab /><text style="color:#0000ff;">PermitRootLogin no &#160; &#160; &#160; &#160;# Запрещает для root SSH</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">PubkeyAuthetication yes &#160;</text><tab /><text style="color:#0000ff;"># Разрешает аутентификацию по ключу (по умолчанию yes)</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">PasswordAuthentication no </text><tab /><text style="color:#0000ff;"># Запрещает аутентификацию по паролю (только сертификат)</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">AllowUsers &lt;username&gt; &#160; &#160; &#160; </text><tab /><text style="color:#0000ff;"># Разрешает подключение пользователю &lt;username&gt;</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">DenyUsers mysql postgres &#160;</text><tab /><text style="color:#0000ff;"># Запрещает ssh login для пользователей mysql, postgres</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">PermitRootLogin no &#160; &#160; &#160;</text><tab /><text style="color:#0000ff;"># Запрещает для root SSH</text></para>
+    <para styleclass="Normal"><text style="color:#ff0000;">ВНИМАНИЕ! Строку AllowUsers &lt;username&gt; &#160;исправляем под своего пользователя</text></para>
+    <para styleclass="Normal"><text style="color:#ff0000;">например: AllowUsers user</text></para>
     <para styleclass="Normal"></para>
     <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
       <li styleclass="Normal">Перезапустим ssh сервер</li>
