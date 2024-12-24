@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
-<topic template="Default" modified="2024-12-18T10:55:26.525+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+<topic template="Default" modified="2024-12-24T09:21:35.334+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
   <title>5. Публикация 1С Базы</title>
   <body>
     <header>
@@ -16,7 +16,7 @@
     <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
       <li styleclass="Normal"><text styleclass="Image Caption" style="font-size:11pt; font-weight:normal;">После добавления базы на сервер пебликуем ее:</text></li>
     </list>
-    <para styleclass="Normal">ВНИМАНИЕ! Путь к утилите webinst зависит от номера версии 1С.</para>
+    <para styleclass="Normal"><text style="color:#ff0000;">ВНИМАНИЕ! Путь к утилите </text><text style="color:#0000ff;">webinst</text><text style="color:#ff0000;"> зависит от номера версии 1С.</text></para>
     <para styleclass="Normal"><tab /><text style="color:#0000ff;">/opt/1cv8/x86_64/8.3.25.1445/webinst -publish -apache24 -wsdir unf -dir /var/www/unf -connstr &quot;Srvr=1c.mydomen.ru;Ref=unf;&quot; -confpath /etc/httpd/conf.d/1c.mydomen.ru.conf</text></para>
     <para styleclass="Normal"><tab />где:</para>
     <para styleclass="Normal"><tab /><tab /><text style="color:#0000ff;">unf</text> - <text style="font-family:Arial; text-decoration:none; vertical-align:baseline; color:#333333; background-color:#ffffff;">алиас, </text><text style="font-family:Arial; text-decoration:none; vertical-align:baseline; background-color:#ffffff;">который</text><text style="font-family:Arial; text-decoration:none; vertical-align:baseline; color:#333333; background-color:#ffffff;"> нужно будет добавить к адресу сервера для доступа к этой базе.</text></para>
