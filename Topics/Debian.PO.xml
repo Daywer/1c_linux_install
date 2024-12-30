@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
-<topic template="Default" modified="2024-12-18T08:48:57.317+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+<topic template="Default" modified="2024-12-30T17:15:02.328+05:00" lasteditedby="User" version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
   <title>3. Установка ПО</title>
   <body>
     <header>
@@ -31,9 +31,9 @@
       <li styleclass="Normal">Скачиваем и устанавливаем Postgresql</li>
     </list>
     <para styleclass="Normal"><tab /><text style="color:#0000ff;">wget https://repo.postgrespro.ru/1c-16/keys/pgpro-repo-add.sh</text></para>
-    <para styleclass="Normal"><tab /><text style="color:#0000ff;">chmod+x pgpro-repo-add.sh</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">chmod +x pgpro-repo-add.sh</text></para>
     <para styleclass="Normal"><tab /><text style="color:#0000ff;">./pgpro-repo-add.sh</text></para>
-    <para styleclass="Normal"><tab /><text style="color:#0000ff;">apt install postgrespro-1c-16-server</text></para>
+    <para styleclass="Normal"><tab /><text style="color:#0000ff;">apt install postgrespro-1c-16-*</text></para>
     <para styleclass="Normal"></para>
     <list id="0" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:&apos;Segoe UI&apos;; font-size:11pt; color:#000000;">
       <li styleclass="Normal">Устанавиваем &#160;пароль системной учетной записи postgres (пароль: postgres)</li>
